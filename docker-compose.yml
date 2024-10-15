@@ -3,13 +3,15 @@ services:
     image: loadimpact/k6
     volumes:
       - ./load-tests:/scripts/load-tests
-    entrypoint:
-      [
-        "k6",
-        "run",
-        "--vus",
-        "${LOAD_USERS:-20}",
-        "--duration",
-        "${LOAD_DURATION:-1m}",
-        "/scripts/load-tests/sample-smoke-test.js",
-      ]
+    env_file:
+      - .env
+    # entrypoint:
+    #   [
+    #     "k6",
+    #     "run",
+    #     "--vus",
+    #     "${LOAD_USERS:-20}",
+    #     "--duration",
+    #     "${LOAD_DURATION:-1m}",
+    #     "/scripts/load-tests/sample-smoke-test.js",
+    #   ]
